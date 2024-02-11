@@ -140,7 +140,18 @@ import { gql } from 'graphql-tag';
     adminType: AdminType 
     blockUnder: String!
   }
-
+  enum StaffType {
+    Physician
+    Nurse
+    Surgeon
+    Specialist
+    Technician
+    Pharmacist
+    AlliedHealthProfessional
+    AdministrativeStaff
+    SupportStaff
+    Volunteer
+  }
  
 
 `;
