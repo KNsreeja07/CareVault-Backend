@@ -1,7 +1,7 @@
 import { Types } from "mongoose";
 
 export enum HospitalType {
-    Public = 'Public',
+    Public = 'PPP model',
     Private = 'Private',
     Government = 'Government',
 }
@@ -10,29 +10,76 @@ export enum HospitalLevel {
     Level2 = 'Level 2',
     Level3 = 'Level 3',
 }
+interface Contact {
+    email: string;
+    phone: string;
+}
 
-export interface Hospital {
-    _id : Types.ObjectId,
-    hospitalName : string,
+interface HospitalInfo {
+    _id: Types.ObjectId;
+    hospitalLevel: HospitalLevel;
+    numberOfPatients: number;
+    superAdmin : any //This has to be figured out, currently making it an any,
+    admins : any[] //has to be figured out. 
+    location: string;
+    medicalSpecialties: string[];
+    hospitalType: HospitalType;
+    contact: Contact;
+    hospitalName: string;
     address: {
         city: string;
         countryCode: string;
-        countryName: string;
-        landmark: string;
+        dependentLocality: string;
         line1: string;
         line2: string;
         postalCode: string;
+        sortingCode: string;
         state: string;
       };
-    hospitalPhone : string,
-    hospitalEmail : string,
-    website : string | undefined,
-    superAdmin : any //This has to be figured out, currently making it an any,
-    hospitalInfo : {
-       hospitalLevel : Number, 
-       numberOfPatients : Number, 
-       numberOfBeds : Number,
-       hospitalType: HospitalType;
-
-    }
+    website: string | undefined;
+    accreditations: {
+        name: string;
+        body: string;
+        expirationDate: Date;
+    }[];
+    operatingHours: {
+        day: string;
+        hours: string;
+    }[];
+    insurancesAccepted: string[];
+    facilityType: string;
+    ownership: string;
+    bedCapacity: {
+        type: string;
+        count: number;
+    }[];
+    emergencyServices: {
+        available: boolean;
+        traumaCenter: boolean;
+        capabilities: string[];
+    };
+    outpatientServices: string[];
+    qualityIndicators: {
+        metric: string;
+        value: string;
+    }[];
+    languagesSpoken: string[];
+    ehrSystem: string;
+    telemedicineServices: string[];
+    humanResources: {
+        category: string;
+        count: number;
+    }[];
+    environmentalSustainability: string[];
+    financialInformation: {
+        metric: string;
+        value: number;
+    }[];
+    partnershipsAndAffiliations: string[];
+    patients : {
+        category : string,
+        count : number,
+    },
+    
 }
+ 
