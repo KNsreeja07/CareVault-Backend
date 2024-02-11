@@ -1,0 +1,10 @@
+ schema: path/to/your/schema.graphql
+documents: 
+  - path/to/your/queries/*.graphql
+  - path/to/your/typeDefs/*.graphql
+generates:
+  path/to/generated/types.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-resolvers
