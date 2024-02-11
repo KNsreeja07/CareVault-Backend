@@ -1,6 +1,7 @@
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
-import { typeDefs, resolvers } from './graphql/schema'; 
+import  typeDefs  from './typedefs'; 
+import resolvers from './resolvers';
 
 const PORT = process.env.PORT || 4000;
 
@@ -20,7 +21,6 @@ async function startServer() {
     console.log(`Server running on http://localhost:${PORT}${server.graphqlPath}`);
   });
 
- 
   app.use((err, _req, res, _next) => {
     console.error('Error occurred:', err.message);
     res.status(500).send('Internal Server Error');
