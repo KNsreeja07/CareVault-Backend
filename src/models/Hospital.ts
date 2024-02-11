@@ -1,5 +1,6 @@
+import mongoose, { Types, Schema } from "mongoose";
+import { AdministratorInterface } from "./Administrator";
 
- import mongoose, { Types, Schema } from "mongoose";
 /**
  * Enum representing different types of hospitals.
  */
@@ -33,8 +34,8 @@ export interface HospitalInfoInterface {
     _id: Types.ObjectId;  // Unique identifier for the hospital.
     hospitalName: string;  // Name of the hospital.
     hospitalLevel: HospitalLevel;  // Level of the hospital.
-    superAdmin: any;  // Super admin of the hospital (type to be determined).
-    admins: any[];  // Array of admins for the hospital (type to be determined).
+    superAdmin: AdministratorInterface['_id'];  // Super admin of the hospital (reference to Administrator).
+    admins: AdministratorInterface['_id'][];  // Array of admins for the hospital (reference to Administrator).
     location: string;  // Location of the hospital.
     medicalSpecialties: string[];  // Array of medical specialties offered by the hospital.
     hospitalType: HospitalType;  // Type of the hospital.
@@ -101,11 +102,10 @@ export interface HospitalInfoInterface {
  * Mongoose model representing the information of the hospital. 
  */
 const HospitalInfoSchema = new Schema<HospitalInfoInterface>({
-    _id: Schema.Types.ObjectId,
     hospitalName: { type: String, required: true },
     hospitalLevel: { type: String, enum: ['Level 1', 'Level 2', 'Level 3'], required: true },
-    superAdmin: { type: Schema.Types.Mixed }, // Type to be determined
-    admins: [{ type: Schema.Types.Mixed }], // Type to be determined
+    superAdmin: { type: Schema.Types.ObjectId, ref: 'Administrator' }, // Reference to Administrator model.
+    admins: [{ type: Schema.Types.ObjectId, ref: 'Administrator' }], // Array of references to Administrator model.
     location: { type: String, required: true },
     medicalSpecialties: [{ type: String }],
     hospitalType: { type: String, enum: ['Public', 'Private', 'Government'], required: true },
