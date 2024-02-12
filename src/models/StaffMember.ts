@@ -1,4 +1,4 @@
-import mongoose, { Schema, Types } from "mongoose";
+import mongoose, { Model, Schema, Types, model, models } from "mongoose";
 import { AdminType } from "./Administrator";
 
 /**
@@ -28,7 +28,7 @@ export interface StaffContact {
 /**
  * Interface representing a staff member.
  */
-export interface StaffMember {
+export interface StaffMemberInterface {
     _id: Types.ObjectId; 
     isAdmin: boolean;             // Indicates if the staff member is an admin.
     isSuperAdmin: boolean;        // Indicates if the staff member is a super admin.
@@ -57,7 +57,7 @@ export interface StaffMember {
 /**
  * Mongoose schema representing a staff member.
  */
-const StaffMemberSchema = new Schema<StaffMember>({
+const StaffMemberSchema = new Schema<StaffMemberInterface>({
     isAdmin: { type: Boolean, required: true },
     isSuperAdmin: { type: Boolean, required: true },
     staffType: { type: String, enum: Object.values(StaffType), required: true },
@@ -85,4 +85,9 @@ const StaffMemberSchema = new Schema<StaffMember>({
     blockUnder: { type: String, required: true }
 });
 
-export default mongoose.model<StaffMember>('StaffMember', StaffMemberSchema);
+ 
+const StaffMemberModel = (): Model<StaffMemberInterface> =>
+  model<StaffMemberInterface>('StaffMember', StaffMemberSchema);
+
+ export const StaffMember = (models.StaffMember ||
+    StaffMemberModel()) as ReturnType<typeof StaffMemberModel>;

@@ -1,4 +1,4 @@
-import mongoose, { Types, Schema } from "mongoose";
+import mongoose, { Types, Schema, Model, model, models } from "mongoose";
 import { AdministratorInterface } from "./Administrator";
 
 /**
@@ -171,4 +171,9 @@ const HospitalInfoSchema = new Schema<HospitalInfoInterface>({
     }
 });
 
-export default mongoose.model<HospitalInfoInterface>('HospitalInfo', HospitalInfoSchema);
+ 
+const HospitalModel = (): Model<HospitalInfoInterface> =>
+  model<HospitalInfoInterface>('HospitalInfo', HospitalInfoSchema);
+
+ export const Hospital = (models.Hospital ||
+    HospitalModel()) as ReturnType<typeof HospitalModel>;

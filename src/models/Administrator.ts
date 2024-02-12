@@ -78,5 +78,5 @@ const administratorModel = (): Model<AdministratorInterface> =>
   model<AdministratorInterface>('Administrator', AdministratorSchema);
 
 // This syntax is needed to prevent Mongoose OverwriteModelError while running tests.
-export const Administrator = (models.Advertisement ||
+export const Administrator = (models.Administrator ||
     administratorModel()) as ReturnType<typeof  administratorModel>;
