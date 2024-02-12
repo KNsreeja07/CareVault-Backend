@@ -5,10 +5,10 @@ import { gql } from 'graphql-tag';
 export const queries = gql`
    type Query {
  
-  getHospital(id: ID!): Hospital
+  getHospital(id: ID!): HospitalInfo
 
  
-  getAllHospitals: [Hospital]
+  getAllHospitals: [HospitalInfo]
 
  
   getStaffMember(id: ID!): StaffMember

@@ -5,12 +5,12 @@ import types from './types';
 import {queries} from './queries';
 import {mutations} from './mutations';
 
-const schema = gql`
-  ${enums}
-  ${inputs}
-  ${types}
-  ${queries}
-  ${mutations}
+const typeDefs =  gql`
+   ${enums},
+   ${inputs},
+   ${types},
+   ${queries},
+   ${mutations}
 `;
 
-export default schema;
+export default typeDefs;

@@ -1,18 +1,22 @@
-import express from "express";
+import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
-import typeDefs from './typedefs';
-// import resolvers from './resolvers'; // make sure to import your resolvers
+import typeDefs from './typedefs/index';
 
-const app = express(); // create an express application instance
-const server = new ApolloServer({ typeDefs }); // include resolvers here
+const server = new ApolloServer({ typeDefs });
 
-server.applyMiddleware({ app }); // apply the Apollo middleware to the express application
+async function startServer() {
+  await server.start(); // Make sure to await server.start() before calling server.applyMiddleware()
 
-// use the listen method on the express application instance
-app.listen({ port: 4000 }, () => {
-  console.log(`
-    Server is running!
-    Listening on port 4000
-    Explore at https://studio.apollographql.com/sandbox
-  `);
+  const app = express();
+  server.applyMiddleware({ app });
+
+  const PORT = process.env.PORT || 3000;
+
+  app.listen(PORT, () => {
+    console.log(`Server listening on http://localhost:${PORT}${server.graphqlPath}`);
+  });
+}
+
+startServer().catch(err => {
+  console.error('Error starting server:', err.message);
 });
