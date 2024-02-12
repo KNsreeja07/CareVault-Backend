@@ -1,8 +1,8 @@
-import { gql } from 'graphql-tag';
-
-
-
-export const queries = gql`
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.queries = void 0;
+const graphql_tag_1 = require("graphql-tag");
+exports.queries = (0, graphql_tag_1.gql) `
    type Query {
  
   getHospital(id: ID!): Hospital
@@ -27,7 +27,4 @@ export const queries = gql`
 
 
 
-`
-
- 
-   
+`;
