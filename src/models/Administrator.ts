@@ -1,4 +1,4 @@
-import mongoose, { Schema, Types } from "mongoose";
+import mongoose, { Model, Schema, Types, model, models } from "mongoose";
 import { HospitalInfoInterface } from "./Hospital";
 
  /**
@@ -72,4 +72,11 @@ const AdministratorSchema = new Schema<AdministratorInterface>({
     }
 });
 
-export default mongoose.model<AdministratorInterface>('Administrator', AdministratorSchema);
+ 
+ 
+const administratorModel = (): Model<AdministratorInterface> =>
+  model<AdministratorInterface>('Administrator', AdministratorSchema);
+
+// This syntax is needed to prevent Mongoose OverwriteModelError while running tests.
+export const Administrator = (models.Advertisement ||
+    administratorModel()) as ReturnType<typeof  administratorModel>;
