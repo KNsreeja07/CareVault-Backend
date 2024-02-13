@@ -1,9 +1,6 @@
-import mongoose from "mongoose";
 import {Administrator, AdministratorInterface} from "../../models/Administrator";
 
-const createAdministrator = async (parent: any, args: { input: AdministratorInterface; }, context: any) => {
- 
-  
+const createAdministrator = async (parent: any, args: any,  context: any) => {
     try {
         const newAdministrator = new Administrator({
             ...args.input as AdministratorInterface

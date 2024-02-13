@@ -2,8 +2,9 @@ import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import typeDefs from './typedefs/index';
 import { connect } from './db'; 
+import resolvers from './resolvers/index';
 
-const server = new ApolloServer({ typeDefs });
+const server = new ApolloServer({ typeDefs, resolvers });
 
 async function startServer() {
   await connect();  
