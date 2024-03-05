@@ -87,3 +87,6 @@ Blockchain technology makes use of sophisticated APIs to make data storage and E
 14. **User Feedback and Iterative Improvement**: Solicit feedback from users and stakeholders to identify areas for improvement and iterate on the EHR system continuously.
 
 Addressing these challenges will be essential for creating a robust and effective blockchain-based EHR system that meets the needs of healthcare providers, patients, and regulatory bodies.
+
+
+## To address these issues, we'll focus on immediate fixes for short-term project goals and outline plans for addressing long-term challenges in the future.
